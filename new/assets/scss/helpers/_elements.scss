@@ -1,0 +1,291 @@
+body { -webkit-font-smoothing: antialiased; background-color: #fff; font-family: 'Montserrat', 'Arial', sans-serif; font-size: 14px; }
+a { @include transition(.2s); color: $color-grey-dark; outline: none !important; text-decoration: none !important;
+  &:hover { color: $color-secondary; }
+}
+blockquote { border: none; padding: 0; margin: 0;
+  p { @include opacity(1); font-size: 30px; line-height: 36px; }
+  footer {
+    &:before { color: $color-secondary; }
+  }
+
+  &.quote-light-font { color: #fff;
+    footer { color: #fff;
+      &:before { color: $color-secondary; }
+    }
+  }
+  &.quote-dark-font { color: $color-primary;
+  }
+}
+p { @include opacity(.5); line-height: 24px; }
+img { max-width: 100%; }
+h1, h2, h3 {  font-family: 'Abril Fatface', cursive; margin-top: 0; position: relative; }
+h2 { color: $color-primary; font-size: 60px; margin-bottom: 60px; }
+h3 { color: $color-primary; font-size: 30px; margin-bottom: 20px; }
+ul {
+  li {
+    a { color: $color-grey-dark; }
+  }
+}
+
+// Classes
+
+.background { @include skew-background; height: 100%; overflow: hidden; z-index: 0;
+  img { @include skew-image; @include opacity(.05); max-width: inherit; top: -65px; position: relative; }
+}
+
+.center { text-align: center; }
+.font-light { color: #fff !important; }
+.font-dark { color: $color-primary !important; }
+.divider { background-color: #fff; bottom: 10px; display: block; content: ""; height: 2px; margin: 20px 0; width: 70px;
+  &.dark { background-color: $color-secondary; }
+}
+.divider-skewed { @include transform(skew(0deg,-4deg)); background-color: $color-grey-background; height: 2px; margin: 80px 0 40px 0; width: 100%; }
+.has-animation { visibility: hidden; }
+.has-opacity { @include opacity(.3); }
+.has-subtitle { margin-bottom: 5px; }
+.navbar-collapse { padding-right: 0; }
+.nav-pills { font-family: 'Abril Fatface', cursive; font-size: 30px; position: relative; z-index: 1;
+  li {
+    &.active {
+      a { background-color: transparent; color: $color-primary;
+        &:after { @include transform(scaleX(1)); @include opacity(1); }
+        &:hover, &:focus { background-color: transparent; color: $color-primary; }
+      }
+    }
+    a { @include transition(.2s); background-color: transparent; color: $color-grey-light; padding: 0px 5px; position: relative;
+      &:after { @include opacity(0); @include transition(.2s); @include transform(scaleX(0)); background-color: $color-secondary; bottom: 17px; display: block; content: ""; height: 2px; width: 100%; position: absolute; right: 0px; }
+      &:hover, &:focus { background-color: transparent; color: $color-primary;
+      }
+    }
+  }
+}
+.read-more { color: $color-grey-dark;
+  &:after { @include simple-line-icons; color: $color-secondary; content: "\e079"; font-size: 16px; margin-left: 5px; position: relative; top: 2px; }
+}
+
+.go-back { color: $color-grey-dark; display: block; margin-bottom: 5px;
+  &:before { @include simple-line-icons; color: $color-secondary; content: "\e07a"; font-size: 16px; margin-right: 5px; position: relative; top: 2px; }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// BLOG GRID THUMBNAIL
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.blog-grid {
+  .blog-post {
+    h3 { font-size: 24px; }
+    .content { border: 2px solid $color-grey-background; margin-top: -2px; padding: 20px; }
+    .image { position: relative; z-index: 2; overflow: hidden;
+      a { overflow: hidden;
+        img { @include transition(.8s); @include scale(1); box-shadow: #000 0 0 0;
+          &:hover { @include transform(scale(1.1) rotate(-2deg)); }}
+      }
+      .meta-overlay { bottom: 0; color: #fff; padding: 20px; position: absolute; width: 100%; z-index: 2;
+        &:after { @include opacity(.9); background-color: $color-secondary; content: ""; width: 100%; min-height: 70px; position: absolute; left: 0; bottom: 0; z-index: -1; }
+        .tag { float: left; font-size: 30px; }
+        .meta { float: right; line-height: 30px;
+          .date { display: inline-block; margin-right: 10px; }
+          .comments { display: inline-block; }
+        }
+      }
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// FEATURE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.feature {
+  h2 { margin-bottom: -5px; }
+  h3 { @include opacity(.2); color: $color-primary; }
+  p { color: #000; }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GALLERY ITEM
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.gallery-item { @include opacity(.5); @include transition(.3s); overflow: hidden; position: relative; box-shadow: #000 0 0 0; // <- Firefox image hover bug workaround
+  i { @include opacity(.2); @include transition(.3s); bottom: 30px; color: #000; font-size: 30px; position: absolute; right: 20px; z-index: 2; }
+  a {
+    // overlay with description default state
+    .overlay { @include transition(.3s); bottom: -100px;  position: absolute; width: 100%;  //top: 10px;
+      &:after { @include skew-background; background-color: $color-primary; content: ""; display: block; height: 200px; width: 100%; position: absolute; top: 60px; z-index: 1; }
+      // description of the work - project name for example
+      .description { padding: 20px 0 0 20px; position: relative; top: 80px; z-index: 2; }
+    }
+    img { @include transition(.8s); }
+    // hover states
+    &:hover {
+      .overlay { bottom: 100px;
+      }
+      img {  @include transform(scale(1.1) rotate(-2deg)); }
+    }
+  }
+  &:hover { @include opacity(1); box-shadow: #000 0 0 0;
+    i { @include opacity(1); color: $color-secondary; }
+  }
+  h4 { color: #fff; font-size: 18px; margin: 0; font-weight: normal; }
+  .sub-title { @include opacity(.5); color: #fff; font-size: 14px; font-weight: normal; }
+
+  &.big-slide-content {
+    i { bottom: 60px; }
+    h4 { font-size: 24px; }
+    a {
+      //.overlay { bottom: -100px; }
+      &:hover {
+        .overlay { bottom: 130px; }
+      }
+    }
+  }
+}
+
+.impress-block { border: 2px solid $color-grey-background; margin-top: 20px; padding: 20px;}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// NUMBER
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.number-wrapper {
+  i { color: $color-secondary; display: inline-block; font-size: 28px; margin-right: 10px; vertical-align: top; margin-top: 10px; }
+  .number { display: inline-block;
+    .title { font-size: 36px; font-weight: bold; }
+    .description { @include opacity(.4); font-size: 18px; font-weight: bold; }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MEMBER
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.member { margin-top: 40px; margin-bottom: 20px;
+  .name { bottom: 10px; margin-right: -1px; padding: 20px 0 20px 0; position: relative;
+    h4 { color: $color-primary; font-family: 'Abril Fatface', cursive; font-size: 30px; margin-bottom: 20px; position: relative;
+      &:after { background-color: $color-grey-background; bottom: -10px; display: block; content: ""; height: 2px; left: 0; margin: 0 auto; position: absolute; right: 0; width: 70px; }
+    }
+    //.background { background-color: #fff; height: 100%; top: 0; z-index: -1; }
+    .name-background { @include skew-background; height: 100%; overflow: hidden; background-color: #fff; top: 0; z-index: -1 }
+  }
+  .photo { height: 250px; position: relative;
+    &:after { @include skew-background; @include opacity(0); @include transition(.4s); background-color: #000; content: ""; height: 100%; width: 100%; outline: 1px solid transparent;  position: absolute; top: 0; z-index: -1;  }
+    .about { @include opacity(0); @include transition(.4s);
+      p { @include opacity(1); color: #fff; cursor: default; margin-bottom: 0; max-height: 200px; overflow: hidden; padding: 30px; }
+      .social { bottom: 10px; position: absolute; width: 100%;
+        .icons { bottom: 15px; left: 0; position: absolute; text-align: center; right: 0; z-index: 2;
+          a { @include transition(.4s); @include opacity(.5); text-decoration: none;
+            i { color: #fff; font-size: 16px; padding: 0 10px 0 10px; }
+            &:hover { @include opacity(1); }
+          }
+        }
+        //.background { @include opacity(.5); background-color: $color-secondary; bottom: 0px; height: 60px; top: inherit;  outline: 1px solid transparent; z-index: 1; }
+        .social-background { @include skew-background; @include opacity(.5); overflow: hidden; background-color: $color-secondary; bottom: 0px; height: 60px; top: inherit;  outline: 1px solid transparent; z-index: 1; }
+      }
+    }
+    //.background { @include transition(.4s); height: 270px; top: 0; z-index: -1;  box-shadow: #000 0 0 0; //-webkit-backface-visibility: hidden;
+    //  img { @include opacity(1); @include transition(.4s); top: -10px; box-shadow: #000 0 0 0; }
+    //}
+    .member-photo { @include skew-background; overflow: hidden; @include transition(.4s); height: 270px; top: 0; z-index: -1;  box-shadow: #000 0 0 0; //-webkit-backface-visibility: hidden;
+      img { @include skew-image; @include opacity(.05); max-width: inherit; position: relative; @include opacity(1); @include transition(.4s); top: -10px; box-shadow: #000 0 0 0; width: 100%; }
+    }
+    &:hover {
+      &:after { @include opacity(.5); }
+      .about { @include opacity(1);
+      }
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// PRICE BOX
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.price-box { @include transition(.2s); border: 2px solid $color-grey-background; background-color: $color-grey-background; margin-bottom: 20px; padding-bottom: 15px; position: relative; top:0;
+  h3 { background-color: #fff; color: $color-primary; font-size: 48px; padding: 20px 0 70px 0; text-align: center; position: relative; }
+  ul { margin-bottom: 0; padding: 50px 0 20px 0; line-height: 30px; }
+  .title { position: relative;
+    .price-circle { @include border-radius(50%); background-color: $color-primary; bottom: -55px; color: #fff; left: 0;  height: 110px; margin: 0 auto; position: absolute; right: 0; text-align: center; text-transform: uppercase; width: 110px;
+      .price { font-size: 24px; font-weight: bold; margin-bottom: -5px; margin-top: 30px; }
+      .time { font-size: 12px; }
+    }
+  }
+  &.promoted { background-color: $color-primary; border: none; color: #fff;
+    h3 { background-color: $color-primary; color: #fff; }
+    .title {
+      .price-circle { background-color: $color-secondary; }
+    }
+  }
+  &:hover { top: -10px; }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// PROGRESS BAR
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.progress-bars { margin-top: 15px;
+  .progress-bar-wrapper { margin-bottom: 50px; position: relative;
+    .label { font-size: 18px; padding: 0; margin: 0 }
+    .percents { color: $color-grey-background; cursor: default; font-family: 'Abril Fatface', cursive; font-size: 80px; left: 20px; position: absolute; top: 10px; z-index: 1; }
+    .progress { @include box-shadow(none); @include transform(skew(0deg,-4deg)); @include border-radius(0px); background-color: #fff; height: 30px; outline: 1px solid transparent; //-webkit-backface-visibility: hidden;
+      .progress-bar { @include box-shadow(none); background-color: $color-secondary; //-webkit-backface-visibility: hidden;
+      }
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SLIDER REVOLUTION
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.slider { position: relative; width: 100%; overflow: hidden; z-index: 0;
+  .fullwidthbanner-container {
+    .tparrows { @include box-sizing(border-box); background: none !important; bottom: 65px !important; height: 50px; width: 50px; top: inherit !important;
+      &:before { @include elegant-font; @include transition(.4s); background-color: #fff; color: $color-primary; display: block; font-size: 48px; height: 100%; width: 100%; }
+      &:hover {
+        &:before { background-color: $color-primary; color: #fff; }
+      }
+    }
+    .tp-leftarrow { margin-left: -50px !important;
+      &:before { content: "\34"; }
+    }
+    .tp-rightarrow { margin-right: -50px !important;
+      &:before { content: "\35"; }
+    }
+  }
+  .slider-headline {
+    h1 { color: #fff; border-bottom: 6px solid rgba(0,0,0,0.2); font-size: 5.5em; margin-bottom: 0; text-transform: uppercase; display: inline-block;}
+  }
+}
+
+//.slider-wrapper { overflow: hidden;  }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SLIDER PARALLAX
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.cycle-slideshow { z-index: -3 !important; }
+.slider {
+  .parallax-slider {  overflow: hidden; position: relative; top: 0px; z-index: -3; max-height: 860px;
+    ul { margin: 0; padding: 0; height:100%; min-width: 100%;
+      li { top: -10px !important; left: -20px !important; text-align: center !important;
+        h1 { margin: 0; padding: 0; }
+        img {  max-width: inherit !important; position: relative; width: 105%; }
+      }
+    }
+  }
+  .cycle-controls { @include box-sizing(border-box); bottom: 65px; cursor: pointer; height: 50px; width: 50px; position: absolute;
+    &:before { @include elegant-font; @include transition(.4s); background-color: #fff; color: $color-primary; display: block; font-size: 48px; height: 100%; width: 100%; }
+    &:hover {
+      &:before { background-color: $color-primary; color: #fff; }
+    }
+  }
+  #cycle-prev { margin-left: -50px;
+    &:before { content: "\34"; }
+  }
+  #cycle-next { margin-right: -50px;
+    &:before { content: "\35"; }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// TESTIMONIAL
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.testimonial { margin-top: 50px;
+  .testimonial-wrapper {
+    .rating { margin-bottom: 20px;
+      i {  color: $color-secondary; display: inline-block; font-size: 24px; }
+    }
+  }
+  .photo { float: left; margin-right: 20px; max-width: 160px; }
+}

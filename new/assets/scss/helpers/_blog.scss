@@ -1,0 +1,55 @@
+.blog {
+  aside { margin-bottom: 40px; }
+  .post { margin-bottom: 50px;
+    .post-content { margin-bottom: 30px; }
+    .post-header {
+      .meta-post { color: #fff; margin-bottom: 20px;
+        .post-tag {
+          span { color: $color-grey-dark; line-height: 70px; margin-left: 20px; }
+          .tag {background: $color-secondary; float: left; font-size: 30px;  padding: 20px; }
+        }
+        .meta { float: right; line-height: 70px;
+          .date { display: inline-block; margin-right: 10px; }
+          .comments { display: inline-block; }
+          i { color: $color-secondary; }
+          span { color: $color-grey-dark; }
+        }
+      }
+    }
+    .post-featured-image { margin-bottom: 20px; }
+  }
+  .social { margin-bottom: 20px;
+    .icons { display: inline-block;
+      a { @include opacity(.8);
+        .icon {  color: $color-grey-dark; font-size: 16px; margin-left: 15px; }
+        &:hover { @include opacity(1); }
+      }
+    }
+  }
+  .tags {
+    .tag { @include opacity(.7); @include transition(.2s); color: $color-grey-dark; background-color: $color-grey-background; display: inline-block; margin-bottom: 5px; padding: 10px;
+      &:hover { @include opacity(1); }
+    }
+  }
+  .comments {
+    .comments-list {
+      .comment {
+        .author-image { float: left; margin-right: 20px; width: 70px; }
+        .comment-content { margin-left: 90px;
+          .author { color: $color-primary; font-size: 18px; font-weight: bold; }
+          p { border-bottom: 2px solid $color-grey-background; margin-bottom: 30px; padding-bottom: 15px; }
+        }
+      }
+      .children { margin-left: 70px; }
+    }
+  }
+  .sidebar {
+    ul { line-height: 24px; }
+  }
+  .recent-post {
+    .meta {
+      .date, .comments { @include opacity(.5); display: inline-block; margin-right: 10px }
+    }
+    .divider-skewed { margin: 10px 0 30px 0; }
+  }
+}
