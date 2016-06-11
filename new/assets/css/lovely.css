@@ -38,26 +38,26 @@
 }
 /* line 8, ../scss/helpers/_forms.scss */
 .btn.dark {
-  background-color: #401800;
+  background-color: #B61000;
   border: 2px solid transparent;
 }
 /* line 9, ../scss/helpers/_forms.scss */
 .btn.dark.framed {
   background-color: transparent;
-  border: 2px solid #401800;
-  color: #401800;
+  border: 2px solid #B61000;
+  color: #B61000;
 }
 /* line 10, ../scss/helpers/_forms.scss */
 .btn.dark.framed:hover {
-  background-color: #401800;
-  border: 2px solid #401800;
+  background-color: #B61000;
+  border: 2px solid #B61000;
   color: #fff;
 }
 /* line 12, ../scss/helpers/_forms.scss */
 .btn.dark:hover {
   background-color: transparent;
-  border: 2px solid #401800;
-  color: #401800;
+  border: 2px solid #B61000;
+  color: #B61000;
 }
 
 /* line 17, ../scss/helpers/_forms.scss */
@@ -77,7 +77,7 @@ input[type="text"], input[type="email"], input[type="search"], textarea {
   -o-transition: 0.4s;
   transition: 0.4s;
   border: none;
-  border-bottom: 2px solid #401800;
+  border-bottom: 2px solid #B61000;
   background-color: transparent;
   margin-bottom: 20px;
   min-height: 40px;
@@ -177,7 +177,7 @@ footer input[type="text"]:focus, footer input[type="email"]:focus, footer textar
 }
 /* line 14, ../scss/helpers/_blocks.scss */
 .quote-one .background {
-  background-color: #401800;
+  background-color: #B61000;
 }
 
 /* line 18, ../scss/helpers/_blocks.scss */
@@ -197,7 +197,7 @@ footer input[type="text"]:focus, footer input[type="email"]:focus, footer textar
 }
 /* line 25, ../scss/helpers/_blocks.scss */
 .our-works h3 {
-  color: #401800;
+  color: #B61000;
   font-family: 'Montserrat', 'Arial', sans-serif;
   font-size: 24px;
   font-weight: bold;
@@ -243,7 +243,7 @@ footer input[type="text"]:focus, footer input[type="email"]:focus, footer textar
 }
 /* line 52, ../scss/helpers/_blocks.scss */
 .services .background {
-  background-color: #401800;
+  background-color: #B61000;
 }
 /* line 53, ../scss/helpers/_blocks.scss */
 .services .background img {
@@ -263,7 +263,7 @@ footer input[type="text"]:focus, footer input[type="email"]:focus, footer textar
 
 /* line 64, ../scss/helpers/_blocks.scss */
 .some-fun-numbers {
-  color: #401800;
+  color: #B61000;
 }
 /* line 65, ../scss/helpers/_blocks.scss */
 .some-fun-numbers .background {
@@ -300,7 +300,7 @@ footer input[type="text"]:focus, footer input[type="email"]:focus, footer textar
 }
 /* line 85, ../scss/helpers/_blocks.scss */
 .video-presentation a .icon {
-  color: #401800;
+  color: #B61000;
   font-size: 90px;
 }
 /* line 86, ../scss/helpers/_blocks.scss */
@@ -319,7 +319,7 @@ footer input[type="text"]:focus, footer input[type="email"]:focus, footer textar
 }
 /* line 93, ../scss/helpers/_blocks.scss */
 .testimonials .background {
-  background-color: #401800;
+  background-color: #B61000;
 }
 
 /* line 100, ../scss/helpers/_blocks.scss */
@@ -446,7 +446,7 @@ footer input[type="text"]:focus, footer input[type="email"]:focus, footer textar
 }
 /* line 39, ../scss/helpers/_blog.scss */
 .blog .comments .comments-list .comment .comment-content .author {
-  color: #401800;
+  color: #B61000;
   font-size: 18px;
   font-weight: bold;
 }
@@ -1073,7 +1073,7 @@ blockquote.quote-light-font footer:before {
 }
 /* line 16, ../scss/helpers/_elements.scss */
 blockquote.quote-dark-font {
-  color: #401800;
+  color: #B61000;
 }
 
 /* line 19, ../scss/helpers/_elements.scss */
@@ -1097,14 +1097,14 @@ h1, h2, h3 {
 
 /* line 22, ../scss/helpers/_elements.scss */
 h2 {
-  color: #401800;
+  color: #B61000;
   font-size: 60px;
   margin-bottom: 60px;
 }
 
 /* line 23, ../scss/helpers/_elements.scss */
 h3 {
-  color: #401800;
+  color: #B61000;
   font-size: 30px;
   margin-bottom: 20px;
 }
@@ -1155,7 +1155,7 @@ ul li a {
 
 /* line 38, ../scss/helpers/_elements.scss */
 .font-dark {
-  color: #401800 !important;
+  color: #B61000 !important;
 }
 
 /* line 39, ../scss/helpers/_elements.scss */
@@ -1217,7 +1217,7 @@ ul li a {
 /* line 50, ../scss/helpers/_elements.scss */
 .nav-pills li.active a {
   background-color: transparent;
-  color: #401800;
+  color: #B61000;
 }
 /* line 51, ../scss/helpers/_elements.scss */
 .nav-pills li.active a:after {
@@ -1232,7 +1232,7 @@ ul li a {
 /* line 52, ../scss/helpers/_elements.scss */
 .nav-pills li.active a:hover, .nav-pills li.active a:focus {
   background-color: transparent;
-  color: #401800;
+  color: #B61000;
 }
 /* line 55, ../scss/helpers/_elements.scss */
 .nav-pills li a {
@@ -1270,7 +1270,7 @@ ul li a {
 /* line 57, ../scss/helpers/_elements.scss */
 .nav-pills li a:hover, .nav-pills li a:focus {
   background-color: transparent;
-  color: #401800;
+  color: #B61000;
 }
 
 /* line 62, ../scss/helpers/_elements.scss */
@@ -1410,7 +1410,7 @@ ul li a {
 .feature h3 {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
   opacity: 0.2;
-  color: #401800;
+  color: #B61000;
 }
 /* line 100, ../scss/helpers/_elements.scss */
 .feature p {
@@ -1465,7 +1465,7 @@ ul li a {
   position: absolute;
   width: 100%;
   z-index: -1;
-  background-color: #401800;
+  background-color: #B61000;
   content: "";
   display: block;
   height: 200px;
@@ -1587,7 +1587,7 @@ ul li a {
 }
 /* line 159, ../scss/helpers/_elements.scss */
 .member .name h4 {
-  color: #401800;
+  color: #B61000;
   font-family: 'Abril Fatface', cursive;
   font-size: 30px;
   margin-bottom: 20px;
@@ -1800,7 +1800,7 @@ ul li a {
 /* line 198, ../scss/helpers/_elements.scss */
 .price-box h3 {
   background-color: #fff;
-  color: #401800;
+  color: #B61000;
   font-size: 48px;
   padding: 20px 0 70px 0;
   text-align: center;
@@ -1823,7 +1823,7 @@ ul li a {
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   border-radius: 50%;
-  background-color: #401800;
+  background-color: #B61000;
   bottom: -55px;
   color: #fff;
   left: 0;
@@ -1848,13 +1848,13 @@ ul li a {
 }
 /* line 206, ../scss/helpers/_elements.scss */
 .price-box.promoted {
-  background-color: #401800;
+  background-color: #B61000;
   border: none;
   color: #fff;
 }
 /* line 207, ../scss/helpers/_elements.scss */
 .price-box.promoted h3 {
-  background-color: #401800;
+  background-color: #B61000;
   color: #fff;
 }
 /* line 209, ../scss/helpers/_elements.scss */
@@ -1952,7 +1952,7 @@ ul li a {
   -o-transition: 0.4s;
   transition: 0.4s;
   background-color: #fff;
-  color: #401800;
+  color: #B61000;
   display: block;
   font-size: 48px;
   height: 100%;
@@ -1960,7 +1960,7 @@ ul li a {
 }
 /* line 237, ../scss/helpers/_elements.scss */
 .slider .fullwidthbanner-container .tparrows:hover:before {
-  background-color: #401800;
+  background-color: #B61000;
   color: #fff;
 }
 /* line 240, ../scss/helpers/_elements.scss */
@@ -2052,7 +2052,7 @@ ul li a {
   -o-transition: 0.4s;
   transition: 0.4s;
   background-color: #fff;
-  color: #401800;
+  color: #B61000;
   display: block;
   font-size: 48px;
   height: 100%;
@@ -2060,7 +2060,7 @@ ul li a {
 }
 /* line 270, ../scss/helpers/_elements.scss */
 .slider .cycle-controls:hover:before {
-  background-color: #401800;
+  background-color: #B61000;
   color: #fff;
 }
 /* line 273, ../scss/helpers/_elements.scss */
@@ -2164,11 +2164,11 @@ footer .footer-contact-form {
 }
 /* line 20, ../scss/helpers/_footer.scss */
 footer .footer-contact-form .background {
-  background-color: #2c1000;
+  background-color: #a20e00;
 }
 /* line 22, ../scss/helpers/_footer.scss */
 footer .footer-copyright {
-  background-color: #542000;
+  background-color: #ca1200;
   position: relative;
   margin-top: -140px;
   padding-top: 120px;
