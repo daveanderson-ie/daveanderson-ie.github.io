@@ -1090,7 +1090,7 @@ img {
 
 /* line 21, ../scss/helpers/_elements.scss */
 h1, h2, h3 {
-  font-family: 'Abril Fatface', cursive;
+  font-family: 'Courier New', cursive;
   margin-top: 0;
   position: relative;
 }
@@ -1209,7 +1209,7 @@ ul li a {
 
 /* line 47, ../scss/helpers/_elements.scss */
 .nav-pills {
-  font-family: 'Abril Fatface', cursive;
+  font-family: 'Courier New', cursive;
   font-size: 30px;
   position: relative;
   z-index: 1;
@@ -1588,7 +1588,7 @@ ul li a {
 /* line 159, ../scss/helpers/_elements.scss */
 .member .name h4 {
   color: #B61000;
-  font-family: 'Abril Fatface', cursive;
+  font-family: 'Courier New', cursive;
   font-size: 30px;
   margin-bottom: 20px;
   position: relative;
@@ -1885,7 +1885,7 @@ ul li a {
 .progress-bars .progress-bar-wrapper .percents {
   color: #efefef;
   cursor: default;
-  font-family: 'Abril Fatface', cursive;
+  font-family: 'Courier New', cursive;
   font-size: 80px;
   left: 20px;
   position: absolute;

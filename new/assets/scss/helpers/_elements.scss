@@ -18,7 +18,7 @@ blockquote { border: none; padding: 0; margin: 0;
 }
 p { @include opacity(.5); line-height: 24px; }
 img { max-width: 100%; }
-h1, h2, h3 {  font-family: 'Abril Fatface', cursive; margin-top: 0; position: relative; }
+h1, h2, h3 {  font-family: 'Courier New', cursive; margin-top: 0; position: relative; }
 h2 { color: $color-primary; font-size: 60px; margin-bottom: 60px; }
 h3 { color: $color-primary; font-size: 30px; margin-bottom: 20px; }
 ul {
@@ -44,7 +44,7 @@ ul {
 .has-opacity { @include opacity(.3); }
 .has-subtitle { margin-bottom: 5px; }
 .navbar-collapse { padding-right: 0; }
-.nav-pills { font-family: 'Abril Fatface', cursive; font-size: 30px; position: relative; z-index: 1;
+.nav-pills { font-family: 'Courier New', cursive; font-size: 30px; position: relative; z-index: 1;
   li {
     &.active {
       a { background-color: transparent; color: $color-primary;
@@ -156,7 +156,7 @@ ul {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 .member { margin-top: 40px; margin-bottom: 20px;
   .name { bottom: 10px; margin-right: -1px; padding: 20px 0 20px 0; position: relative;
-    h4 { color: $color-primary; font-family: 'Abril Fatface', cursive; font-size: 30px; margin-bottom: 20px; position: relative;
+    h4 { color: $color-primary; font-family: 'Courier New', cursive; font-size: 30px; margin-bottom: 20px; position: relative;
       &:after { background-color: $color-grey-background; bottom: -10px; display: block; content: ""; height: 2px; left: 0; margin: 0 auto; position: absolute; right: 0; width: 70px; }
     }
     //.background { background-color: #fff; height: 100%; top: 0; z-index: -1; }
@@ -218,7 +218,7 @@ ul {
 .progress-bars { margin-top: 15px;
   .progress-bar-wrapper { margin-bottom: 50px; position: relative;
     .label { font-size: 18px; padding: 0; margin: 0 }
-    .percents { color: $color-grey-background; cursor: default; font-family: 'Abril Fatface', cursive; font-size: 80px; left: 20px; position: absolute; top: 10px; z-index: 1; }
+    .percents { color: $color-grey-background; cursor: default; font-family: 'Courier New', cursive; font-size: 80px; left: 20px; position: absolute; top: 10px; z-index: 1; }
     .progress { @include box-shadow(none); @include transform(skew(0deg,-4deg)); @include border-radius(0px); background-color: #fff; height: 30px; outline: 1px solid transparent; //-webkit-backface-visibility: hidden;
       .progress-bar { @include box-shadow(none); background-color: $color-secondary; //-webkit-backface-visibility: hidden;
       }
