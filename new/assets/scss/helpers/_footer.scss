@@ -1,0 +1,35 @@
+footer {
+  address { color: #fff;
+    a { color: #fff; text-decoration: underline;
+      &:hover { color: $color-secondary; @include opacity(.9); }
+    }
+    .address { margin-bottom: 20px; margin-left: 25px; }
+    .icon { color: $color-secondary; float: left; margin-right: 10px; margin-top: 2px; }
+    dd { margin-bottom: 10px; }
+  }
+  textarea { min-height: 140px; }
+  #map { height: 500px; width: 100%; position: relative; top:-140px; }
+
+  .footer-contact-us { position: relative; z-index: 99;
+    .background { background-color: $color-grey-background; }
+    .block-wrapper {
+      .content { padding-bottom: 90px; }
+    }
+  }
+  .footer-contact-form { margin-top: -140px; position: relative; z-index: 99;
+    .background { background-color: darken($color-primary, 4%); }
+  }
+  .footer-copyright {background-color: lighten($color-primary, 4%); position: relative; margin-top: -140px; padding-top: 120px;
+    .block {
+      .content { padding: 20px;
+        span { float: left; }
+        .social { float: right;
+          a { @include opacity(.5);
+            .icon {  color: #fff; font-size: 16px; margin-left: 15px; }
+            &:hover { @include opacity(1); }
+          }
+        }
+      }
+    }
+  }
+}

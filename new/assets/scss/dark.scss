@@ -1,0 +1,228 @@
+@import 'lovely';
+$color-grey-dark: #242424;
+
+body { color: #fff; background-color: $color-grey-dark; }
+h1, h2, h3 { color: #fff; }
+p { color: #fff !important; }
+input[type="text"],input[type="email"], input[type="search"], textarea { @include transition(.4s); border: none; border-bottom: 2px solid #fff; background-color: transparent; color: #fff; padding-left: 0; outline: none; position: relative;
+  &:focus { background-color: rgba(0,0,0,0.2); border-color: transparent; color: #fff; padding-left: 10px; }
+}
+
+.divider-skewed { @include opacity(.2); }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// BLOCKS STYLING
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// QUOTE
+.quote-one { color: #fff;
+  .background { background-color: $color-grey-dark; }
+}
+
+// FEATURES
+.features { color: #fff;
+  .background { @include opacity(1); background-color: $color-primary; }
+}
+
+//OUR WORKS
+.our-works {
+  h2 { display: inline-block; }
+  h3 { color: #fff; font-family: 'Montserrat', 'Arial', sans-serif; font-size: 24px; font-weight: bold; }
+
+  .nav-pills {
+    li {
+      &.active {
+        a { @include opacity(1); color: #fff; }
+      }
+      a { @include transition(.2s); @include opacity(.5); color: #fff;
+        &:hover, &:focus { @include opacity(1); background-color: transparent; color: #fff;
+        }
+      }
+    }
+  }
+}
+
+// OUR SKILLS
+.our-skills {
+  .background { background-color: #1f1f1f; }
+}
+
+// SOME FUN NUMBERS
+.some-fun-numbers { color: #fff;
+  .background { @include opacity(1); background-color: $color-primary;
+    img { @include opacity(.05); }
+  }
+}
+
+// PRICING
+.pricing {
+  .background { background-color: #242424; }
+  .divider-skewed { @include opacity(.05); }
+}
+
+// OUR TEAM
+.our-team {
+  .background { background-color: #2f2f2f; }
+}
+
+// VIDEO PRESENTATION
+.video-presentation { color: #fff;
+  h2, h3 { color: #fff; }
+  .background { background-color: #292929; }
+  a { text-decoration: none;
+    .icon { color: $color-secondary; font-size: 90px;
+      &:before { @include border-radius(50%); background-color: transparent;  }
+    }
+  }
+}
+
+//BLOG
+.blog { background-color: #242424;
+  .blog-grid {
+    .blog-post {
+      .content { border: 2px solid rgba(255,255,255,.1);
+        .read-more { color: #fff; }
+      }
+    }
+  }
+
+}
+
+// TESTIMONIALS
+.testimonials { color: #fff;
+  .background { background-color: $color-primary; }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// FOOTER
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+footer {
+  address { color: #fff;
+    a { color: #fff; text-decoration: underline;
+      &:hover { color: $color-secondary; @include opacity(.9); }
+    }
+    .address { margin-bottom: 20px; margin-left: 25px; }
+    .icon { color: $color-secondary; float: left; margin-right: 10px; margin-top: 2px; }
+    dd { margin-bottom: 10px; }
+  }
+  textarea { min-height: 140px; }
+  #map { height: 500px; width: 100%; position: relative; top:-140px; }
+
+  .footer-contact-us { position: relative; z-index: 99;
+    .background { background-color: darken($color-grey-dark, 4%); }
+    .block-wrapper {
+      .content { padding-bottom: 90px; }
+    }
+  }
+  .footer-contact-form { margin-top: -140px; position: relative; z-index: 99;
+    .background { background-color: darken($color-primary, 4%); }
+  }
+  .footer-copyright {background-color: lighten($color-primary, 4%); position: relative; margin-top: -140px; padding-top: 120px;
+    .block {
+      .content { padding: 20px;
+        span { float: left; }
+        .social { float: right;
+          a { @include opacity(.5);
+            .icon {  color: #fff; font-size: 16px; margin-left: 15px; }
+            &:hover { @include opacity(1); }
+          }
+        }
+      }
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// HEADER
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.navigation-wrapper {
+  .navigation { background-color: #3c3c3c;
+    &:after { background-color: #3c3c3c; }
+    .navbar {
+      .navbar-nav {
+        li {
+          a { background-color: none; color: #fff; font-size: 14px; margin-top: 10px; text-transform: uppercase; padding-bottom: 0; padding-left: 8px; padding-right: 8px; }
+        }
+      }
+    }
+    .navbar-header { position: relative; z-index: 0;}
+    .navbar-toggle { background-color: #fff; border: 2px solid $color-grey-background; padding: 9px 6px;
+      &:after { @include elegant-font; content: "\61"; color: $color-grey-dark; font-size: 26px; left: 0; position: absolute; right: 0; top: 4px; }
+    }
+    &:hover { @include opacity(1); }
+  }
+}
+
+.header-solid { @include transition(.2s); @include opacity(1); }
+
+.page-title { position: relative;
+  .header-background { height: 280px; overflow: hidden; }
+  h1 { color: #fff; font-size: 72px; position: absolute; top: 120px; }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MEMBER
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.member {
+  .name {
+    h4 { color: #fff;
+      &:after { background-color: $color-secondary; }
+    }
+    .name-background { background-color: #1a1a1a; }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// PRICE BOX
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.price-box { border: 2px solid rgba(255,255,255,.2); background-color: transparent;
+  h3 { background-color: #1a1a1a; color: #fff; }
+  .title {
+    .price-circle { background-color: #0f0f0f; color: #fff; }
+  }
+  &.promoted { background-color: $color-primary; border: 2px solid $color-secondary; }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// PROGRESS BAR
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.progress-bars {
+  .progress-bar-wrapper {
+    .label { color: #fff !important; }
+    .percents { color: #1f1f1f; }
+    .progress { background-color: #3a3a3a; }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SUB PAGE BLOCK
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.sub-page {
+  a { color: #fff;
+    &:hover { color: $color-secondary; }
+  }
+  .background { background-color: $color-grey-dark; }
+
+  h2{ margin-bottom: 40px; }
+  .block {
+    .block-wrapper {
+      .content { padding-top: 0; }
+    }
+  }
+  &.blog {
+    .comments {
+      .comment {
+        .comment-content {
+          .author { color: $color-secondary; }
+        }
+      }
+    }
+    .post {
+      .post-header {
+        .meta-post {
+          span { color: #fff; }
+        }
+      }
+    }
+  }
+}

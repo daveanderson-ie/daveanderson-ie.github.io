@@ -1,0 +1,35 @@
+.navigation-wrapper { padding-bottom: 35px; position: relative;
+  .navigation { background-color: #fff; height: 30px; position: fixed; width: 100%; z-index: 101;
+    &:after { @include skew-background; background-color: #fff; content: ""; height: 140px; width: 100%; position: absolute; top: -37px; z-index: -1; }
+    .navbar { margin-bottom: 0;
+      .navbar-nav {
+        li {
+          a { background-color: none; color: $color-grey-dark; font-size: 14px; margin-top: 10px; text-transform: uppercase; padding-bottom: 0; padding-left: 8px; padding-right: 8px;
+            &:after { @include opacity(0); @include transition(.2s); @include transform(scaleX(0)); background-color: $color-secondary; bottom: 9px; display: block; content: ""; height: 2px; width: 100%; position: absolute; right: 0px; }
+            &:hover,&:focus { background-color: transparent;
+              &:after { @include transform(scaleX(1)); @include opacity(1); }
+            }
+          }
+          &.active {
+            a {
+              &:after { @include transform(scaleX(1)); @include opacity(1); }
+            }
+          }
+        }
+      }
+    }
+    .navbar-header { position: relative; z-index: 0;}
+    .navbar-toggle { background-color: #fff; border: 2px solid $color-grey-background; padding: 9px 6px;
+      &:after { @include elegant-font; content: "\61"; color: $color-grey-dark; font-size: 26px; left: 0; position: absolute; right: 0; top: 4px; }
+    }
+    &:hover { @include opacity(1); }
+  }
+}
+
+.header-opacity { @include transition(.2s); @include opacity(.5); }
+.header-solid { @include transition(.2s); @include opacity(1); }
+
+.page-title { position: relative;
+  .header-background { height: 280px; overflow: hidden; }
+  h1 { color: #fff; font-size: 72px; position: absolute; top: 120px; }
+}
