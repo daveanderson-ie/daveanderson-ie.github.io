@@ -1,0 +1,32 @@
+<HTML>
+
+<HEAD>
+  <TITLE>Cycling Payment Demo</TITLE>
+</HEAD>
+
+<BODY>
+  <div id="paypal-button-container"></div>
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=AYI9dQOvk1T4X6tlkRmo0Ip44EF3j77LIBbJtt5YqYTJrl2CquJ-KCbyLwR4pNgF-BvZgwsdXi4LVkF2&vault=true&intent=subscription"
+    data-sdk-integration-source="button-factory"></script>
+  <script>
+    paypal.Buttons({
+      style: {
+        shape: 'rect',
+        color: 'gold',
+        layout: 'vertical',
+        label: 'subscribe'
+      },
+      createSubscription: function (data, actions) {
+        return actions.subscription.create({
+          'plan_id': 'P-9UP22802MF289824KMA5J6SY'
+        });
+      },
+      onApprove: function (data, actions) {
+        alert(data.subscriptionID);
+      }
+    }).render('#paypal-button-container');
+  </script>
+</BODY>
+
+</HTML>
