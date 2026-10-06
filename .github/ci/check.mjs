@@ -6,7 +6,7 @@
 // Exit code 1 if the PR introduces a blocking problem (see BLOCKING below).
 //
 // BLOCKING: new HTML validation errors; broken internal links or missing #anchors;
-// new JS errors, or new failed same-origin requests, on render.
+// new JS errors, new failed same-origin requests, or new horizontal overflow, on render.
 // REPORT ONLY: external link failures (flaky, outside our control); legacy problems.
 
 import { spawn } from 'node:child_process';
@@ -66,7 +66,7 @@ async function validate(root, page) {
 // ---------- 2 + 3. Render and links ----------
 async function render(browser, origin, page, shotPrefix) {
   const url = `${origin}/${page}`;
-  const result = { jsErrors: [], failedRequests: [], links: [], anchors: [] };
+  const result = { jsErrors: [], failedRequests: [], links: [], anchors: [], overflow: [] };
   for (const [name, vp] of Object.entries(VIEWPORTS)) {
     const ctx = await browser.newContext({ viewport: vp });
     const tab = await ctx.newPage();
@@ -82,6 +82,23 @@ async function render(browser, origin, page, shotPrefix) {
     } catch (e) {
       jsErrors.push(`navigation failed: ${e.message.split('\n')[0]}`);
     }
+    // Horizontal overflow: visible elements extending past the viewport's right edge (scrolls sideways, or is
+    // clipped where the theme hides overflow). Reports up to 3 offenders.
+    const over = await tab.evaluate(() => {
+      const W = window.innerWidth;
+      const out = [];
+      for (const el of document.querySelectorAll('body *')) {
+        const r = el.getBoundingClientRect();
+        const cs = getComputedStyle(el);
+        if (!r.width || cs.visibility === 'hidden' || cs.display === 'none' || cs.position === 'fixed') continue;
+        if (r.right > W + 1 && r.left < W) {
+          if (out.some((o) => o.el.contains(el))) continue;
+          out.push({ el, d: `${el.tagName.toLowerCase()}${el.id ? '#' + el.id : ''}${el.classList[0] ? '.' + el.classList[0] : ''} +${Math.round(r.right - W)}px` });
+        }
+      }
+      return out.map((o) => o.d);
+    }).catch(() => []);
+    result.overflow.push(...over.map((o) => `${vp.width}px: ${o}`));
     if (shotPrefix) {
       await tab.screenshot({ path: path.join(OUT, 'screenshots', `${shotPrefix}-${name}.png`), fullPage: true }).catch(() => {});
     }
@@ -146,17 +163,19 @@ try {
     if (!v.head.exists) { json.pages.push({ page, deleted: true }); md.push(`### \`${page}\`\n\nDeleted in this PR; not checked.\n`); continue; }
 
     const head = await render(browser, HO, page, slug(page) + '-head');
-    const base = v.base.exists ? await render(browser, BO, page, slug(page) + '-base') : { jsErrors: [], failedRequests: [] };
+    const base = v.base.exists ? await render(browser, BO, page, slug(page) + '-base') : { jsErrors: [], failedRequests: [], overflow: [] };
     const newJs = newItems(head.jsErrors, base.jsErrors);
     const newFailed = newItems(head.failedRequests, base.failedRequests);
+    const ovKey = (o) => o.replace(/ \+\d+px$/, '');
+    const newOverflow = head.overflow.filter((o) => !base.overflow.map(ovKey).includes(ovKey(o)));
     const links = await checkLinks(HO, page, head.links, head.anchors);
 
-    const pageBlocking = newErrs.length + newJs.length + newFailed.length + links.internal.length;
+    const pageBlocking = newErrs.length + newJs.length + newFailed.length + newOverflow.length + links.internal.length;
     blocking += pageBlocking;
     json.pages.push({
       page, status: pageBlocking ? 'fail' : 'pass', newPage: !v.base.exists,
       validation: { headErrors: v.head.errors.length, baseErrors: v.base.errors.length, newErrors: newErrs },
-      render: { newJsErrors: newJs, newFailedRequests: newFailed, legacyJsErrors: base.jsErrors, legacyFailedRequests: base.failedRequests },
+      render: { newJsErrors: newJs, newFailedRequests: newFailed, newOverflow, overflow: head.overflow, legacyJsErrors: base.jsErrors, legacyFailedRequests: base.failedRequests },
       links,
       screenshots: [`${slug(page)}-head-desktop.png`, `${slug(page)}-head-mobile.png`].concat(v.base.exists ? [`${slug(page)}-base-desktop.png`, `${slug(page)}-base-mobile.png`] : []),
     });
@@ -166,12 +185,14 @@ try {
     md.push(`| HTML validation | ${newErrs.length ? `**${newErrs.length} new error(s)**` : 'no new errors'} (head ${v.head.errors.length}, base ${v.base.errors.length}) |`);
     md.push(`| JS errors on render | ${newJs.length ? `**${newJs.length} new**` : 'no new'} (legacy ${base.jsErrors.length}) |`);
     md.push(`| Failed same-origin requests | ${newFailed.length ? `**${newFailed.length} new**` : 'no new'} (legacy ${base.failedRequests.length}) |`);
+    md.push(`| Horizontal overflow (1280px, 390px) | ${newOverflow.length ? `**${newOverflow.length} new**` : 'none new'}${head.overflow.length && !newOverflow.length ? ' (legacy)' : ''} |`);
     md.push(`| Internal links / anchors | ${links.internal.length ? `**${links.internal.length} broken**` : 'all OK'} |`);
     md.push(`| External links (report only) | ${links.external.length ? `${links.external.length} failing` : 'all OK'} |`);
     const details = [
       ...newErrs.map((e) => `- validation L${e.line}:${e.column} \`${e.rule}\` ${esc(e.message)}`),
       ...newJs.map((e) => `- JS error: ${esc(e)}`),
       ...newFailed.map((e) => `- failed request: ${esc(e)}`),
+      ...newOverflow.slice(0, 5).map((e) => `- element past right edge at ${esc(e)}`),
       ...links.internal.map((l) => `- broken internal link \`${esc(l.href)}\`: ${l.problem}`),
       ...links.external.map((l) => `- (report only) external \`${esc(l.href)}\`: ${l.problem}`),
     ];
