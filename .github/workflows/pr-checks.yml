@@ -1,13 +1,13 @@
 name: Site checks
 
-# Runs on every PR to master. Checks only the pages the PR touches (all public pages if shared
+# Runs on every PR to master or an epic/* integration branch. Checks only the pages the PR touches (all public pages if shared
 # CSS/JS/images change), and compares with the PR base so legacy problems don't block.
 # Results: this check's pass/fail, a single PR comment (marker <!-- site-checks -->) that agents
 # can read via REST, and an artifact "site-checks" with report.json and desktop/mobile screenshots.
 
 on:
   pull_request:
-    branches: [master]
+    branches: [master, 'epic/**']
 
 permissions:
   contents: read

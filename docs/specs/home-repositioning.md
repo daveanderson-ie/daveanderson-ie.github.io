@@ -1,6 +1,6 @@
 # Spec: Home page repositioning
 
-**Epic:** #10 · **Owner:** Dave · **Status:** Draft for gate 1 · **Pilot:** 2 of the [agent pipeline experiment](../experiments/agent-pipeline.md)
+**Epic:** #10 · **Owner:** Dave · **Status:** Approved (gate 1, PR #11, 2026-10-06) · **Pilot:** 2 of the [agent pipeline experiment](../experiments/agent-pipeline.md)
 
 ## Outcome
 
@@ -19,11 +19,11 @@ A visitor to gingertechie.com understands within one screen that **The Ginger Gr
 | D3 | Sections, in order: hero, problem/symptoms, services, credentials. No testimonials or client names. |
 | D4 | Call to action: "Book a call" linking to the Google booking page `https://calendar.app.google/yndRsp6zeFihmevd6`. |
 | D5 | Replace the slider with a static hero. |
-| D6 | Nav unchanged (Home, Blog, About → LinkedIn). |
+| D6 | Nav unchanged (Blog, About → LinkedIn). |
 
 ## Page structure and copy
 
-Copy below is a **draft for Dave to edit at gate 1**. Once merged, it is the exact text the page must show.
+Copy below is the exact text the page must show (approved unedited at gate 1).
 
 ### 1. Hero
 - Heading (`h1`): **Is your company waiting on you?**
@@ -74,7 +74,6 @@ Followed by a second **Book a call** button → booking URL.
 - Other pages, nav changes, the blog.
 - Contact forms, analytics, testimonials.
 
-## Open questions for gate 1
+## Gate 1 outcome
 
-1. Copy above: edit as needed. Anything here you won't claim publicly?
-2. Logo: leave the "Ginger Techie" logo image as is for now (out of scope), or do you have a Ginger Group logo file?
+Merged without edits: copy approved as written; logo stays out of scope.
