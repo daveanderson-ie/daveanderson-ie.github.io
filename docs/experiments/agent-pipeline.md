@@ -46,8 +46,10 @@ Generic, task-agnostic prompts live in [`docs/agents/`](../agents/). Each run ge
 
 ## Quality harness (prerequisite)
 
-The site has no tests or CI, so reviewers would only be reading diffs. Before the pilot, add a minimal check workflow on PRs:
-HTML validation, broken-link check, and a page screenshot or Lighthouse run on changed pages.
+`.github/workflows/pr-checks.yml` (**Site checks**) runs on every PR to `master`, on the pages the PR changes (all public pages if shared CSS/JS/images change):
+HTML validation (html-validate), internal link and `#anchor` check, external link check (report only), and a headless Chromium render at 1280px and 390px capturing JS errors and failed requests.
+Each is compared with the PR base, so only **new** problems block; the legacy template has hundreds of existing validation errors.
+Results: the check status, one PR comment starting `<!-- site-checks -->` (updated per push), and an artifact `site-checks` with `report.json` and head/base screenshots. Agents read these instead of installing a browser.
 
 ## Measures
 
