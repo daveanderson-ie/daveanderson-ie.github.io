@@ -1,0 +1,99 @@
+name: Site checks
+
+# Runs on every PR to master. Checks only the pages the PR touches (all public pages if shared
+# CSS/JS/images change), and compares with the PR base so legacy problems don't block.
+# Results: this check's pass/fail, a single PR comment (marker <!-- site-checks -->) that agents
+# can read via REST, and an artifact "site-checks" with report.json and desktop/mobile screenshots.
+
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: site-checks-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  site-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Base worktree
+        run: git worktree add --detach "$RUNNER_TEMP/base" "${{ github.event.pull_request.base.sha }}"
+
+      - name: Pages to check
+        id: pages
+        run: |
+          bash .github/ci/pages.sh "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" > "$RUNNER_TEMP/pages.txt"
+          echo "Pages:"; cat "$RUNNER_TEMP/pages.txt"
+          echo "count=$(grep -c . "$RUNNER_TEMP/pages.txt" || true)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-node@v4
+        if: steps.pages.outputs.count != '0'
+        with:
+          node-version: 22
+
+      - name: Install checker
+        if: steps.pages.outputs.count != '0'
+        working-directory: .github/ci
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: Run checks
+        id: check
+        working-directory: .github/ci
+        run: |
+          mkdir -p "$RUNNER_TEMP/out"
+          if [ "${{ steps.pages.outputs.count }}" = "0" ]; then
+            echo "✅ **Site checks: no site pages changed.**" > "$RUNNER_TEMP/out/report.md"
+            echo '{"blocking":0,"pages":[]}' > "$RUNNER_TEMP/out/report.json"
+            exit 0
+          fi
+          node check.mjs --base "$RUNNER_TEMP/base" --head "$GITHUB_WORKSPACE" \
+            --pages "$RUNNER_TEMP/pages.txt" --out "$RUNNER_TEMP/out"
+
+      - name: Upload report and screenshots
+        id: upload
+        if: always() && steps.pages.outputs.count != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-checks
+          path: ${{ runner.temp }}/out
+          retention-days: 14
+
+      - name: Post or update PR comment
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          report="$RUNNER_TEMP/out/report.md"
+          [ -f "$report" ] || echo "❌ **Site checks did not complete.** See the run log." > "$report"
+          {
+            echo "<!-- site-checks -->"
+            cat "$report"
+            echo
+            echo "---"
+            echo "Commit \`${HEAD_SHA:0:7}\` · [run log]($RUN_URL)${ARTIFACT_URL:+ · [screenshots + report.json]($ARTIFACT_URL)}"
+          } > "$RUNNER_TEMP/comment.md"
+          cat "$RUNNER_TEMP/comment.md" >> "$GITHUB_STEP_SUMMARY"
+          id=$(gh api "repos/$REPO/issues/$PR/comments?per_page=100" --paginate \
+                 --jq '[.[] | select(.body | startswith("<!-- site-checks -->"))][0].id // empty')
+          if [ -n "$id" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$id" -F body=@"$RUNNER_TEMP/comment.md" > /dev/null
+          else
+            gh api -X POST "repos/$REPO/issues/$PR/comments" -F body=@"$RUNNER_TEMP/comment.md" > /dev/null
+          fi

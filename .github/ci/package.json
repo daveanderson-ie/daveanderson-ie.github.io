@@ -1,0 +1,9 @@
+{
+  "name": "site-pr-checks",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "html-validate": "9.4.0",
+    "playwright": "1.52.0"
+  }
+}
